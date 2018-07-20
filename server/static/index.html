@@ -1,0 +1,77 @@
+<html>
+  <head>
+    <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.5/socket.io.min.js"></script>
+    <script src="easyrtc/easyrtc.js"></script>
+    <script src="https://unpkg.com/networked-aframe/dist/networked-aframe.min.js"></script>
+    <title>shareTheBeat</title>
+  </head>
+  <body>
+    <a-scene networked-scene="app: shareTheBeat; room: main; debug: true;">
+    <a-assets>
+      <a-asset-item id="morty-obj" src="/models/avatars/morty/model.obj"></a-asset-item>
+      <a-asset-item id="morty-mtl" src="/models/avatars/morty/materials.mtl"></a-asset-item>
+
+      <a-asset-item id="pumpkin-obj" src="/models/avatars/pumpkin/Pumpkin.obj"></a-asset-item>
+      <a-asset-item id="pumpkin-mtl" src="/models/avatars/pumpkin/Pumpkin.mtl"></a-asset-item>
+
+      <template id="avatar-template">
+        <a-entity obj-model="obj: #morty-obj; mtl: #morty-mtl" position="0 0 -1">
+            <a-entity position="1.5 -1.2 -1" scale="0.0015 0.0015 0.0015" obj-model="obj: #bongo-obj; mtl: #bongo-mtl"></a-entity>
+        </a-entity>
+      </template>
+
+      <template id="avatar2-template">
+        <a-entity obj-model="obj: #pumpkin-obj; mtl: #pumpkin-mtl" position="0 0 0">
+            <a-entity position="1.7 -1.2 -1" scale="0.0015 0.0015 0.0015" obj-model="obj: #bongo-obj; mtl: #bongo-mtl"></a-entity>
+        </a-entity>
+      </template>
+
+      <a-asset-item id="bongo-obj" src="/models/instruments/bongos/Bongo.obj"></a-asset-item>
+      <a-asset-item id="bongo-mtl" src="/models/instruments/bongos/Bongo.mtl"></a-asset-item>
+
+      <a-asset-item id="drum-obj" src="/models/instruments/drum/Drum.obj"></a-asset-item>
+      <a-asset-item id="drum-mtl" src="/models/instruments/drum/Drum.mtl"></a-asset-item>
+
+      <a-asset-item id="trumpet-obj" src="/models/instruments/trumpet/Trumpet.obj"></a-asset-item>
+      <a-asset-item id="trumpet-mtl" src="/models/instruments/trumpet/Trumpet.mtl"></a-asset-item>
+
+      <a-asset-item id="harp-obj" src="/models/instruments/harp/Harp.obj"></a-asset-item>
+      <a-asset-item id="harp-mtl" src="/models/instruments/harp/Harp.mtl"></a-asset-item>
+
+      <a-asset-item id="piano-obj" src="/models/instruments/piano/Piano_01.obj"></a-asset-item>
+      <a-asset-item id="piano-mtl" src="/models/instruments/piano/Piano_01.mtl"></a-asset-item>
+
+      <a-asset-item id="stand-obj" src="/models/instruments/stand/Musicstand.obj"></a-asset-item>
+      <a-asset-item id="stand-mtl" src="/models/instruments/stand/Musicstand.mtl"></a-asset-item>
+
+    </a-assets>
+
+    <a-entity position="0 0 0" scale="0.0015 0.0015 0.0015" obj-model="obj: #bongo-obj; mtl: #bongo-mtl"></a-entity>
+
+    <a-entity position="4 0 4" scale="0.0015 0.0015 0.0015" obj-model="obj: #drum-obj; mtl: #drum-mtl"></a-entity>
+
+    <a-entity position="-4 0 -4" scale="0.00005 0.00005 0.00005" obj-model="obj: #piano-obj; mtl: #piano-mtl"></a-entity>
+
+    <a-entity position="3 0 3" scale="0.003 0.003 0.003" obj-model="obj: #trumpet-obj; mtl: #trumpet-mtl"></a-entity>
+
+    <a-entity position="2 0 2" scale="0.003 0.003 0.003" obj-model="obj: #stand-obj; mtl: #stand-mtl"></a-entity>
+
+    <a-entity position="1 0 1" scale="0.006 0.006 0.006" obj-model="obj: #harp-obj; mtl: #harp-mtl"></a-entity>
+
+    <a-entity id="player" camera position="0 1.3 0" wasd-controls look-controls>
+    </a-entity>
+
+
+  </a-scene>
+
+  <script>
+
+    var avatars = ["avatar-template", "avatar2-template"];
+    var avatar = "template: #" + avatars[Math.floor(Math.random()*avatars.length)] + "; attachTemplateToLocal:true;";
+    document.getElementById("player").setAttribute("networked", avatar);
+
+  </script>
+
+  </body>
+</html>

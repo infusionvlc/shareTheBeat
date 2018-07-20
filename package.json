@@ -1,0 +1,12 @@
+{
+  "name": "shareTheBeat",
+  "version": "1.0.0",
+  "description": "Play music with your friends",
+  "scripts": {
+    "start": "node ./server/easyrtc-server.js"
+  },
+  "author": "INFUSIÓN",
+  "dependencies": {
+    "networked-aframe": "^0.5.0"
+  }
+}

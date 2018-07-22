@@ -30,14 +30,18 @@
       <a-asset-item id="pumpkin-mtl" src="/models/avatars/pumpkin/Pumpkin.mtl"></a-asset-item>
 
       <template id="avatar-template">
-        <a-entity obj-model="obj: #morty-obj; mtl: #morty-mtl" position="0 0 -1">
-            <a-entity position="1.5 -1.2 -1" scale="0.0015 0.0015 0.0015" obj-model="obj: #bongo-obj; mtl: #bongo-mtl"></a-entity>
+        <a-entity>
+          <a-entity obj-model="obj: #morty-obj; mtl: #morty-mtl" position="0 0 1">
+              <a-entity position="1.5 -1.2 -2" scale="0.0015 0.0015 0.0015" obj-model="obj: #bongo-obj; mtl: #bongo-mtl"></a-entity>
+          </a-entity>
         </a-entity>
       </template>
 
       <template id="avatar2-template">
-        <a-entity obj-model="obj: #pumpkin-obj; mtl: #pumpkin-mtl" position="0 0 0">
-            <a-entity position="1.7 -1.2 -1" scale="0.0015 0.0015 0.0015" obj-model="obj: #bongo-obj; mtl: #bongo-mtl"></a-entity>
+        <a-entity>
+          <a-entity obj-model="obj: #pumpkin-obj; mtl: #pumpkin-mtl" position="0 0 1">
+              <a-entity position="1.7 -1.2 -2" scale="0.0015 0.0015 0.0015" obj-model="obj: #bongo-obj; mtl: #bongo-mtl"></a-entity>
+          </a-entity>
         </a-entity>
       </template>
 
@@ -84,7 +88,7 @@
     var avatars = ["avatar-template", "avatar2-template"];
     var avatar = "template: #" + avatars[Math.floor(Math.random()*avatars.length)] + "; attachTemplateToLocal:true;";
     document.getElementById("player").setAttribute("networked", avatar);
-      
+
       var delay = 0; // play one note every quarter second
       //DO  MAYOR
       var do3 = 60;
@@ -103,7 +107,7 @@
       var si4 = 83;
       var do5 = 84;
       var velocity = 127;
-      
+
       window.onload = function () {
       MIDI.loadPlugin({
         soundfontUrl: "https://gleitz.github.io/midi-js-soundfonts/FluidR3_GM/",
@@ -123,12 +127,12 @@
             for (var i = 0; i < frame.gestures.length; i++) {
               var gesture = frame.gestures[i];
               if(gesture.type == "swipe") {
-                  
+
                 //Check if the swipe is vertical
-                  var isVertical = Math.abs(gesture.direction[0]) < Math.abs(gesture.direction[1]);  
+                  var isVertical = Math.abs(gesture.direction[0]) < Math.abs(gesture.direction[1]);
                   if(isVertical){
                     if(gesture.direction[1] > 0){
-                        swipeDirection = "up";                          
+                        swipeDirection = "up";
                       }else {
                         // If gesture is swipe down reproduce a note
                         // depending on the x-position of the hand
